@@ -134,8 +134,8 @@ public class Pendu extends Application {
 
         this.boutonMaison = new Button();
         ImageView maison = new ImageView(new Image("file:img/home.png"));
-        maison.setFitHeight(28);
-        maison.setFitWidth(28);
+        maison.setFitHeight(30);
+        maison.setFitWidth(30);
         this.boutonMaison.setGraphic(maison);
         this.boutonMaison.setOnAction(new RetourAccueil(this.modelePendu, this));
         Tooltip tooltipMaison = new Tooltip("Accueil");
@@ -143,8 +143,8 @@ public class Pendu extends Application {
 
         this.boutonParametres = new Button();
         ImageView parametres = new ImageView(new Image("file:img/parametres.png"));
-        parametres.setFitHeight(28);
-        parametres.setFitWidth(28);
+        parametres.setFitHeight(30);
+        parametres.setFitWidth(30);
         boutonParametres.setGraphic(parametres);
         this.boutonParametres.setOnAction(new ControleurParametres(this));
         Tooltip tooltipParametres = new Tooltip("Paramètres");
@@ -152,8 +152,8 @@ public class Pendu extends Application {
 
         boutonInfo = new Button();
         ImageView information = new ImageView(new Image("file:img/info.png"));
-        information.setFitHeight(28);
-        information.setFitWidth(28);
+        information.setFitHeight(30);
+        information.setFitWidth(30);
         boutonInfo.setGraphic(information);
         boutonInfo.setOnAction(new ControleurInfos(this));
         Tooltip tooltipInfo = new Tooltip("Informations");
@@ -276,8 +276,7 @@ public class Pendu extends Application {
         TitledPane chronoPane = this.leChrono();
 
         Button nouvMot = new Button("Nouveau mot");
-        //nouvMot.setOnAction(new ControleurNouveauMot(this.modelePendu, this)); 
-
+        nouvMot.setOnAction(new ControleurNouvellePartie(this.modelePendu , this));
         gauche.getChildren().addAll(lemotCrypte, dessin, pgh, leclavier);
         droite.getChildren().addAll(leNiveau, chronoPane, nouvMot);
         jeu.getChildren().addAll(gauche, droite);
@@ -305,6 +304,9 @@ public class Pendu extends Application {
         this.modeJeu();
         chrono.resetTime();
         chrono.start();
+        this.modelePendu.setMotATrouver();
+        this.clavier.resetTouches();
+
     }
 
     /**
@@ -358,6 +360,15 @@ public class Pendu extends Application {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir lancer la partie ?", ButtonType.YES, ButtonType.NO);
         alert.setHeaderText("Attention");
         alert.setTitle("Jeu du pendu");
+        return alert;
+    }
+
+
+
+    public Alert popUpLancerNouvellePartie(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir recommencer une partie ?", ButtonType.YES, ButtonType.NO);
+        alert.setHeaderText("Attention");
+        alert.setTitle("Nouvelle partie");
         return alert;
     }
     
