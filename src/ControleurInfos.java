@@ -1,18 +1,22 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+
 /**
  * Contrôleur à activer lorsque l'on clique sur le bouton info
  */
 public class ControleurInfos implements EventHandler<ActionEvent> {
 
-    private Pendu appliPendu;
+    /**
+     * vue du jeu
+     **/
+    private Pendu vuePendu;
 
     /**
      * @param p vue du jeu
      */
-    public ControleurInfos(Pendu appliPendu) {
-        this.appliPendu = appliPendu;
+    public ControleurInfos(Pendu vuePendu) {
+        this.vuePendu = vuePendu;
     }
 
     /**
@@ -21,6 +25,7 @@ public class ControleurInfos implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.appliPendu.popUpReglesDuJeu().showAndWait();
+        this.vuePendu.popUpReglesDuJeu().showAndWait();
     }
+    
 }
